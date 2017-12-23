@@ -12,10 +12,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var storyBoard: UIStoryboard?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let leftVC = storyBoard?.instantiateViewController(withIdentifier: "LeftViewController")
+        let rightVC = storyBoard?.instantiateViewController(withIdentifier: "RightViewController")
+        let mainVC = storyBoard?.instantiateViewController(withIdentifier: "MainViewController")
+        
+        let controller = SlideMenuController(mainViewController: leftVC!, leftMenuViewController: rightVC!, rightMenuViewController: mainVC!)
+        self.window?.rootViewController = controller
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
